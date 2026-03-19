@@ -10,18 +10,47 @@ import {
   Terminal,
   Database
 } from 'lucide-react';
-import { SiHackerrank, SiLeetcode } from 'react-icons/si';
+import { SiHackerrank, SiGeeksforgeeks, SiCplusplus, SiJavascript, SiC, SiExpress, SiTailwindcss, SiPostgresql, SiMysql, SiMongodb } from 'react-icons/si';
+import { FaJava, FaPhp, FaPython, FaNodeJs, FaReact, FaGitAlt, FaGithub } from 'react-icons/fa';
 import './App.css';
 import Background3D from './components/Background3D';
 import Hero3D from './components/Hero3D';
 import Typewriter from './components/Typewriter';
+import ContactModal from './components/ContactModal';
+import DynamicAboutImage from './components/DynamicAboutImage';
 
 export default function App() {
+  const [isContactModalOpen, setIsContactModalOpen] = React.useState(false);
+  const [showResumeOptions, setShowResumeOptions] = React.useState(false);
+
   const skillsData = {
-    Languages: ["Java", "C++", "JavaScript", "C", "PHP", "Python"],
-    Frameworks: ["Node.js", "React", "Express.js", "Tailwind CSS"],
-    "Tools/Platforms": ["PostgreSQL", "MySQL", "MongoDB", "Git", "GitHub"],
-    "Soft Skills": ["Logical reasoning", "Clear communication", "Task planning", "Learning agility"]
+    Languages: [
+      { name: "Java", icon: <FaJava /> },
+      { name: "C++", icon: <SiCplusplus /> },
+      { name: "JavaScript", icon: <SiJavascript /> },
+      { name: "C", icon: <SiC /> },
+      { name: "PHP", icon: <FaPhp /> },
+      { name: "Python", icon: <FaPython /> }
+    ],
+    Frameworks: [
+      { name: "Node.js", icon: <FaNodeJs /> },
+      { name: "React", icon: <FaReact /> },
+      { name: "Express.js", icon: <SiExpress /> },
+      { name: "Tailwind CSS", icon: <SiTailwindcss /> }
+    ],
+    "Tools/Platforms": [
+      { name: "PostgreSQL", icon: <SiPostgresql /> },
+      { name: "MySQL", icon: <SiMysql /> },
+      { name: "MongoDB", icon: <SiMongodb /> },
+      { name: "Git", icon: <FaGitAlt /> },
+      { name: "GitHub", icon: <FaGithub /> }
+    ],
+    "Soft Skills": [
+      { name: "Logical reasoning" },
+      { name: "Clear communication" },
+      { name: "Task planning" },
+      { name: "Learning agility" }
+    ]
   };
 
   const projects = [
@@ -106,6 +135,30 @@ export default function App() {
     }
   ];
 
+  const educationData = [
+    {
+      title: "Bachelor of Technology (Computer Science and Engineering)",
+      org: "Lovely Professional University",
+      date: "Aug 2023 – Present",
+      desc: "Phagwara, Punjab",
+      skills: "CGPA: 7.14"
+    },
+    {
+      title: "Intermediate (Class XII)",
+      org: "Gyan Bharti Residential Complex",
+      date: "Apr 2021 – Mar 2022",
+      desc: "Gaya, Bihar",
+      skills: "Percentage: 62%"
+    },
+    {
+      title: "Matriculation (Class X)",
+      org: "Dav Public School",
+      date: "Apr 2019 – Mar 2020",
+      desc: "Gaya, Bihar",
+      skills: "Percentage: 81%"
+    }
+  ];
+
   const handleScroll = (e, id) => {
     e.preventDefault();
     document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
@@ -159,6 +212,7 @@ export default function App() {
             <a href="#training" onClick={(e) => handleScroll(e, 'training')}>Training</a>
             <a href="#certifications" onClick={(e) => handleScroll(e, 'certifications')}>Certifications</a>
             <a href="#achievements" onClick={(e) => handleScroll(e, 'achievements')}>Achievements</a>
+            <a href="#education" onClick={(e) => handleScroll(e, 'education')}>Education</a>
             <a href="#contact" onClick={(e) => handleScroll(e, 'contact')}>Contact</a>
           </div>
         </nav>
@@ -189,9 +243,9 @@ export default function App() {
               I am a passionate Full Stack Developer with a strong interest in problem-solving and Data Structures & Algorithms.
             </p>
             <div className="btn-group">
-              <a href="#contact" className="btn-primary" onClick={(e) => handleScroll(e, 'contact')}>
+              <button className="btn-primary" onClick={(e) => { e.preventDefault(); setIsContactModalOpen(true); }} style={{ border: '1px solid var(--accent-color)' }}>
                 <Mail size={18} /> Let's Talk
-              </a>
+              </button>
             </div>
           </div>
           <div className="hero-image-container">
@@ -205,28 +259,37 @@ export default function App() {
         {/* About Section */}
         <section id="about" className="about-section">
           <h2 className="section-title"><span className="section-title-text">About Me & Skills</span></h2>
-          <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
-            <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', marginBottom: '2rem' }}>
-              Technically, I have hands-on experience in multiple languages including Java, C++, JavaScript, C, PHP, and Python.
-              I primarily work with the MERN stack — Node.js, Express.js, React.js, and MongoDB — and I also have solid experience with SQL databases and version control systems.
-            </p>
-            <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', marginBottom: '3rem' }}>
-              Apart from technical skills, I focus on logical reasoning, structured problem-solving, clear communication, and continuous learning.
-              I am eager to contribute to a growth-oriented organization where I can apply both my development and problem-solving skills while learning from experienced professionals.
-            </p>
-            <div className="skills-container" style={{ textAlign: 'left', marginTop: '2rem' }}>
-              {Object.entries(skillsData).map(([category, skills]) => (
-                <div key={category} style={{ marginBottom: '1.5rem' }}>
-                  <h3 style={{ color: 'var(--accent-color)', marginBottom: '0.8rem', fontSize: '1.2rem' }}>{category}</h3>
-                  <div className="tech-stack" style={{ justifyContent: 'flex-start', marginTop: '0' }}>
-                    {skills.map((skill, index) => (
-                      <span key={index} className="tech-tag" style={{ fontSize: '0.85rem', padding: '0.4rem 0.8rem' }}>
-                        {skill}
-                      </span>
-                    ))}
+          <div className="about-grid">
+            <div className="about-text-content">
+              <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', marginBottom: '2rem' }}>
+                Technically, I have hands-on experience in multiple languages including Java, C++, JavaScript, C, PHP, and Python.
+                I specialize in the MERN stack — Node.js, Express.js, React.js, and MongoDB — building scalable, high-performance web applications. I also have solid experience with SQL databases, version control systems like Git, and implementing modern UI/UX principles.
+              </p>
+              <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', marginBottom: '2rem' }}>
+                My background involves designing RESTful APIs, optimizing database queries, and integrating secure third-party services. I enjoy turning complex problems into simple, beautiful, and intuitive designs while ensuring robust backend architectures.
+              </p>
+              <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', marginBottom: '3rem' }}>
+                Beyond coding, I focus on logical reasoning, structured problem-solving, clear communication, and continuous learning.
+                I am eager to contribute to a growth-oriented organization where I can apply both my full-stack development expertise and problem-solving skills while learning from experienced professionals.
+              </p>
+              <div className="skills-container" style={{ textAlign: 'left', marginTop: '2rem' }}>
+                {Object.entries(skillsData).map(([category, skills]) => (
+                  <div key={category} style={{ marginBottom: '1.5rem' }}>
+                    <h3 style={{ color: 'var(--accent-color)', marginBottom: '0.8rem', fontSize: '1.2rem' }}>{category}</h3>
+                    <div className="tech-stack" style={{ justifyContent: 'flex-start', marginTop: '0' }}>
+                      {skills.map((skill, index) => (
+                        <span key={index} className="tech-tag" style={{ fontSize: '0.85rem', padding: '0.4rem 0.8rem', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                          {skill.icon && <span style={{ display: 'flex', alignItems: 'center' }}>{skill.icon}</span>}
+                          {skill.name}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+            </div>
+            <div className="about-image-content">
+              <DynamicAboutImage />
             </div>
           </div>
         </section>
@@ -263,6 +326,7 @@ export default function App() {
           <TimelineSection id="certifications" data={certifications} title="Certifications" />
           <TimelineSection id="achievements" data={achievementsData} title="Achievements" />
           <TimelineSection id="extracurricular" data={extracurricular} title="Extracurricular Activity" />
+          <TimelineSection id="education" data={educationData} title="Education" />
         </section>
 
         {/* Contact Section */}
@@ -279,15 +343,26 @@ export default function App() {
             <a href="https://github.com/Priyanshukumar23" className="social-link" title="GitHub" target="_blank" rel="noreferrer">
               <Github size={24} />
             </a>
-            <a href="#" className="social-link" title="LeetCode" target="_blank" rel="noreferrer">
-              <SiLeetcode size={24} />
+            <a href="https://www.geeksforgeeks.org/profile/k7607nvik" className="social-link" title="GeeksforGeeks" target="_blank" rel="noreferrer">
+              <SiGeeksforgeeks size={24} />
             </a>
             <a href="https://www.hackerrank.com/profile/harshit22445" className="social-link" title="HackerRank" target="_blank" rel="noreferrer">
               <SiHackerrank size={24} />
             </a>
-            <a href="#" className="social-link" title="Resume" target="_blank" rel="noreferrer">
-              <FileText size={24} />
-            </a>
+            <div className="resume-dropdown-container"
+              onMouseEnter={() => setShowResumeOptions(true)}
+              onMouseLeave={() => setShowResumeOptions(false)}>
+              <div className="social-link resume-btn" title="Resume" onClick={() => setShowResumeOptions(!showResumeOptions)}>
+                <FileText size={24} />
+              </div>
+
+              {showResumeOptions && (
+                <div className="resume-dropdown-menu">
+                  <a href="/Priyanshu_eXP_cv.pdf" target="_blank" rel="noreferrer" className="resume-dropdown-item">View CV</a>
+                  <a href="/Priyanshu_eXP_cv.pdf" download="Priyanshu_eXP_cv.pdf" className="resume-dropdown-item">Download CV</a>
+                </div>
+              )}
+            </div>
           </div>
         </section>
       </main>
@@ -295,6 +370,7 @@ export default function App() {
       <footer>
         <p>Built with React & Vanilla CSS by Priyanshu Kumar &copy; {new Date().getFullYear()}</p>
       </footer>
+      <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
     </div>
   );
 }
