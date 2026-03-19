@@ -8,7 +8,9 @@ import {
   FileText,
   Award,
   Terminal,
-  Database
+  Database,
+  Sun,
+  Moon
 } from 'lucide-react';
 import { SiHackerrank, SiGeeksforgeeks, SiCplusplus, SiJavascript, SiC, SiExpress, SiTailwindcss, SiPostgresql, SiMysql, SiMongodb } from 'react-icons/si';
 import { FaJava, FaPhp, FaPython, FaNodeJs, FaReact, FaGitAlt, FaGithub } from 'react-icons/fa';
@@ -20,8 +22,15 @@ import ContactModal from './components/ContactModal';
 import DynamicAboutImage from './components/DynamicAboutImage';
 
 export default function App() {
+  const [theme, setTheme] = React.useState('dark');
   const [isContactModalOpen, setIsContactModalOpen] = React.useState(false);
   const [showResumeOptions, setShowResumeOptions] = React.useState(false);
+
+  React.useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => setTheme(prev => prev === 'dark' ? 'light' : 'dark');
 
   const skillsData = {
     Languages: [
@@ -202,11 +211,11 @@ export default function App() {
 
   return (
     <div className="app-container">
-      <Background3D />
+      <Background3D theme={theme} />
       <header>
         <nav>
           <div className="logo">Portfolio</div>
-          <div className="nav-links">
+          <div className="nav-links" style={{ alignItems: 'center' }}>
             <a href="#about" onClick={(e) => handleScroll(e, 'about')}>About</a>
             <a href="#projects" onClick={(e) => handleScroll(e, 'projects')}>Projects</a>
             <a href="#training" onClick={(e) => handleScroll(e, 'training')}>Training</a>
@@ -214,6 +223,9 @@ export default function App() {
             <a href="#achievements" onClick={(e) => handleScroll(e, 'achievements')}>Achievements</a>
             <a href="#education" onClick={(e) => handleScroll(e, 'education')}>Education</a>
             <a href="#contact" onClick={(e) => handleScroll(e, 'contact')}>Contact</a>
+            <button onClick={toggleTheme} className="theme-toggle" style={{ background: 'transparent', border: '1px solid var(--accent-color)', color: 'var(--text-primary)', borderRadius: '50%', width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', marginLeft: '10px' }} title="Toggle Theme">
+              {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
+            </button>
           </div>
         </nav>
       </header>
