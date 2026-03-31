@@ -155,16 +155,12 @@ export default function App() {
     {
       title: "Intermediate (Class XII)",
       org: "Gyan Bharti Residential Complex",
-      date: "Apr 2021 – Mar 2022",
-      desc: "Gaya, Bihar",
-      skills: "Percentage: 62%"
+      desc: "Gaya, Bihar"
     },
     {
       title: "Matriculation (Class X)",
       org: "Dav Public School",
-      date: "Apr 2019 – Mar 2020",
-      desc: "Gaya, Bihar",
-      skills: "Percentage: 81%"
+      desc: "Gaya, Bihar"
     }
   ];
 
@@ -263,7 +259,7 @@ export default function App() {
           <div className="hero-image-container">
             <Hero3D />
             <div className="hero-image-wrapper">
-              <img src="/computer.png" alt="Simple Computer Setup" className="hero-image" />
+              <img src="/myimg.jpeg" alt="My Profile" className="hero-image" />
             </div>
           </div>
         </section>
