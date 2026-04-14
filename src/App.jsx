@@ -68,7 +68,8 @@ export default function App() {
       description: "Full-stack community and event management platform. Features include group creation, event management, real-time and anonymous chats, plus a comprehensive admin panel for moderation and security.",
       tech: ["React.js", "Node.js", "Express", "MongoDB", "Socket.io"],
       link: "https://priyanshu-fronthub.vercel.app/",
-      github: "https://github.com/Priyanshukumar23/Skillsphere"
+      github: "https://github.com/Priyanshukumar23/Skillsphere",
+      bgImage: "/skillsphere-bg.png"
     },
     {
       title: "PrepHub",
@@ -82,7 +83,8 @@ export default function App() {
       description: "Custom e-commerce website developed to handle online retail. Optimized database queries and improved the entire checkout performance for a seamless user experience.",
       tech: ["PHP", "MySQL", "HTML/CSS", "JavaScript"],
       link: "https://kbrothers.fwh.is/",
-      github: "https://github.com/Priyanshukumar23/website2"
+      github: "https://github.com/Priyanshukumar23/website2",
+      bgImage: "/kumarbrothers-bg.png"
     }
   ];
 
@@ -307,7 +309,29 @@ export default function App() {
           <h2 className="section-title"><span className="section-title-text">Featured Projects</span></h2>
           <div className="projects-grid">
             {projects.map((project, index) => (
-              <div key={index} className="project-card">
+              <div 
+                key={index} 
+                className="project-card"
+                style={project.bgImage ? { 
+                  backgroundImage: `url(${project.bgImage})`, 
+                  backgroundSize: 'cover', 
+                  backgroundPosition: 'center', 
+                  position: 'relative', 
+                  zIndex: 1 
+                } : {}}
+              >
+                {project.bgImage && (
+                  <div style={{ 
+                    position: 'absolute', 
+                    top: 0, 
+                    left: 0, 
+                    right: 0, 
+                    bottom: 0, 
+                    backgroundColor: 'rgba(26, 27, 38, 0.85)', 
+                    zIndex: -1, 
+                    borderRadius: '12px' 
+                  }}></div>
+                )}
                 <h3 className="project-title">{project.title}</h3>
                 <p className="project-desc">{project.description}</p>
                 <div className="project-tech">
