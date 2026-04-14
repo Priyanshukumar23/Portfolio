@@ -67,7 +67,7 @@ export default function App() {
       title: "SkillSphere",
       description: "Full-stack community and event management platform. Features include group creation, event management, real-time and anonymous chats, plus a comprehensive admin panel for moderation and security.",
       tech: ["React.js", "Node.js", "Express", "MongoDB", "Socket.io"],
-      link: "#",
+      link: "https://priyanshu-fronthub.vercel.app/",
       github: "https://github.com/Priyanshukumar23/Skillsphere"
     },
     {
@@ -81,7 +81,7 @@ export default function App() {
       title: "Kumar Brothers",
       description: "Custom e-commerce website developed to handle online retail. Optimized database queries and improved the entire checkout performance for a seamless user experience.",
       tech: ["PHP", "MySQL", "HTML/CSS", "JavaScript"],
-      link: "#",
+      link: "https://kbrothers.fwh.is/",
       github: "https://github.com/Priyanshukumar23/website2"
     }
   ];
